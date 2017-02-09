@@ -82,6 +82,7 @@ def answers(request, question_id = ''):
 
     qs = Question.objects.order_by('-question_number').reverse()
 
+    q = None
     answers = []
     if len(question_id) > 0:
         q = Question.objects.get(question_number = question_id)
@@ -94,6 +95,7 @@ def answers(request, question_id = ''):
 
     context = {
         'question_list': qs,
+        'question': q,
         'answers': answers
     }
 

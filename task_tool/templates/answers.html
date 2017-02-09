@@ -1,16 +1,25 @@
 {%  include "header.html" %}
 
-{% for q in question_list %}
+<div class="row">
+    <div class="col-md-4 list-group">
 
-    <li><a href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a></li>
+    {% for q in question_list %}
 
-{% endfor %}
+        <a class="list-group-item" href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a>
 
-{% for a in answers %}
+    {% endfor %}
+    </div>
 
-    <li>{{ a.answer_text }}</li>
+    {% if question != None %}
+    <div class="col-md-8">
+    <h2>Aufgabe {{ question.question_number }}</h2>
+    {% for a in answers %}
 
-{% endfor %}
+        <pre>{{ a.answer_text }}</pre>
 
+    {% endfor %}
+    </div>
+    {% endif %}
+</div>
 
 {%  include "footer.html" %}
