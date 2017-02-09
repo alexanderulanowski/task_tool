@@ -15,7 +15,7 @@
     <h2>Aufgabe {{ question.question_number }}</h2>
     {% for a in answers %}
 
-        <pre>{{ a.answer_text }}</pre>
+        <pre><code class="python">{{ a.answer_text }}</code></pre>
 
     {% endfor %}
     </div>

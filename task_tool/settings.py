@@ -25,7 +25,7 @@ SECRET_KEY = '%*x+ip)$(b*!9nqe*cap+$c=7309dlgl+v067f3u@vuy*v475+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wipro-aufgaben.a1u.cc']
 
 
 # Application definition
