@@ -3,15 +3,19 @@
 <h1><a href="all">Alle Aufgaben</a></h1>
 <h2>Aufgabe {{ question.question_number }}</h2>
 
-<!--
 
--->
-
+<style>
+    img {
+        width: 100%;
+    }
+</style>
 <div class="col-md-9">
-{{ question.question_text }}
+{% autoescape off %}
+    {{ question.question_text }}
+{% endautoescape %}
 
 <div id="editor" style="height: 400px; width: auto">{{ answer }}</div>
-
+<br />
 <form method="post">
     {% csrf_token %}
 
