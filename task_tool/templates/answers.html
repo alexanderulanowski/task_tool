@@ -1,0 +1,16 @@
+{%  include "header.html" %}
+
+{% for q in question_list %}
+
+    <li><a href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a></li>
+
+{% endfor %}
+
+{% for a in answers %}
+
+    <li>{{ a.answer_text }}</li>
+
+{% endfor %}
+
+
+{%  include "footer.html" %}

@@ -1,0 +1,34 @@
+{%  include "header.html" %}
+
+<div class="row">
+    &nbsp;
+</div>
+
+<div class="row">
+
+<form class="form-inline center-block">
+    <label class="mr-sm-2" for="username">Username:</label>
+
+    <input class="form-control" id="username" value="{{ username }}" class="" />
+
+    <button class="btn btn-primary" onclick="window.location = getUrl(); return false;">Fortfahren</button>
+</form>
+
+
+<script>
+    var username = $('#username').val();
+
+    $('#username').keydown(function() {
+        username = $('#username').val();
+    });
+
+    function getUrl() {
+        console.log('test');
+        return 'questions/' + username + '/';
+    }
+</script>
+
+</div>
+
+{%  include "footer.html" %}
+

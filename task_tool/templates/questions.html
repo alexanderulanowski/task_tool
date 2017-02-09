@@ -1,0 +1,50 @@
+{%  include "header.html" %}
+
+<h1><a href="all">Alle Aufgaben</a></h1>
+<h2>Aufgabe {{ question.question_number }}</h2>
+
+<!--
+
+-->
+
+<div class="col-md-9">
+{{ question.question_text }}
+
+<div id="editor" style="height: 400px; width: auto">{{ answer }}</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="question_number" value="{{question.question_number}}" />
+    <textarea id="answer_field" name="answer" style="display: none;">{{ answer }}</textarea>
+
+
+    {% if not qp == None %}
+
+    <button class="btn btn-primary" type="submit" formaction="{{ qp.question_number }}">Vorherige Frage</button>
+
+    {% endif %}
+
+    <button class="btn btn-default" type="submit" formaction="{{ question.question_number }}">Speichern</button>
+
+    {% if not qn == None %}
+
+    <button class="btn btn-primary" type="submit" formaction="{{ qn.question_number }}">Nächste Frage</button>
+
+    {% endif %}
+
+</form>
+</div>
+
+<script src="/static/ace/ace.js" type="text/javascript"></script>
+<script>
+    var editor = ace.edit("editor");
+    //editor.setTheme("ace/theme/monokai");
+    var textarea = $('#answer_field');
+    editor.getSession().on("change", function () {
+        textarea.val(editor.getSession().getValue());
+        //console.log(textarea.val());
+    });
+</script>
+
+{%  include "footer.html" %}

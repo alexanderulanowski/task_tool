@@ -1,0 +1,14 @@
+{%  include "header.html" %}
+
+<h1>Alle Aufgaben</h1>
+
+<div class="row">
+<div class="col-md-3">
+{% for q in question_list %}
+
+    <li><a href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a></li>
+
+{% endfor %}
+</div>
+
+{%  include "footer.html" %}
