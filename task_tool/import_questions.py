@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 
-from .models import Question
+from .models import Question, Group
 
 
 def index(request):
@@ -16,4 +16,15 @@ def index(request):
         for q__ in q_:
             Question(question_number=q__, question_text='<img src="/static/img/{}.png" /><br /><img src="/static/img/{}.png" />'.format(q__[0], q__)).save()
 
-    return HttpResponse("Success")
+    groups = ['Gruppe 1', 'Gruppe 8']
+
+    groups_db = [g.name for g in Group.objects.all()]
+
+    if set(groups) != set(groups_db):
+        for g in groups:
+            if not g in groups_db:
+                Group(name=g).save()
+
+    groups_db = [g.name for g in Group.objects.all()]
+
+    return HttpResponse("Success. Groups:" + str(groups_db))

@@ -1,18 +1,30 @@
 {%  include "header.html" %}
 
 <div class="row">
-    <div class="col-md-4 list-group">
+    <div class="col-md-4">
+         <form class="form-inline" method="post">
+            {% csrf_token %}
+            <select name="group" class="form-control">
+                {% for g in groups %}
+                    <option {% if current_group.name == g.name %}selected="selected"{% endif %} value="{{ g.name }}">{{ g.name }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary" type="submit">Setzen</button>
+        </form>
+        <br />
 
-    {% for q in question_list %}
+        <div class="list-group">
+        {% for q in question_list %}
 
-        <a class="list-group-item {% if q.question_number == question.question_number %}active{% endif %}" href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a>
+            <a class="list-group-item {% if q.question_number == question.question_number %}active{% endif %}" href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a>
 
-    {% endfor %}
+        {% endfor %}
+        </div>
     </div>
 
     {% if question != None %}
     <div class="col-md-8">
-    <h2>Aufgabe {{ question.question_number }}</h2>
+    <h2>Aufgabe {{ question.question_number }} von {{ shown_group.name }}</h2>
     {% for a in answers %}
 
         <pre><code class="python">{{ a.answer_text }}</code></pre>
