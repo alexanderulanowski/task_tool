@@ -4,9 +4,9 @@
 
 <div class="row">
 <div class="col-md-3">
-{% for q in question_list %}
+{% for r in result_list %}
 
-    <li><a href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a></li>
+    <li><a href="{{ r.q.question_number }}">Aufgabe {{ r.q.question_number }}</a>{% if r.done %} <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{% endif %}</li>
 
 {% endfor %}
 </div>

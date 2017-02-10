@@ -5,7 +5,7 @@
 
     {% for q in question_list %}
 
-        <a class="list-group-item" href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a>
+        <a class="list-group-item {% if q.question_number == question.question_number %}active{% endif %}" href="{{ q.question_number }}">Aufgabe {{ q.question_number }}</a>
 
     {% endfor %}
     </div>

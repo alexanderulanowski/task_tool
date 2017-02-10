@@ -6,6 +6,11 @@ from django.template import loader
 from .models import Answer
 from .models import Question
 
+class Result:
+    def __init__(self, q, done):
+        self.q = q
+        self.done = done
+
 
 def index(request):
     # latest_question_list = Question.objects.order_by('-question_number')[:5]
@@ -21,8 +26,13 @@ def all(request, username):
     template = loader.get_template('all.html')
 
     qs = Question.objects.order_by('-question_number').reverse()
+
+    def check_for_answers(answers):
+        return len(answers) > 0 and len(answers.last().answer_text) > 0
+
+    qs = [Result(q, check_for_answers(Answer.objects.filter(user=username, question=q))) for q in qs]
     context = {
-        'question_list': qs
+        'result_list': qs
     }
 
     return HttpResponse(template.render(context, request))
